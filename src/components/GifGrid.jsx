@@ -1,18 +1,17 @@
 import { GifChart } from "./GifChart";
 import { useFetchGifs } from "../hooks/useFetchGifs";
+import { requerido } from "../helpers/requerido";
 
-export const GifGrid = ({ category }) => {
+export const GifGrid = ({ category = requerido() }) => {
 
     const { gifs, isLoading } = useFetchGifs( category );
-
-    console.log( isLoading )
 
     return (
         <>
             <h3>{ category }</h3>
-            {/* Para la carga seria ideal crearse un nuevo componente, pero esto es simple */}
+            {/* Para este proceso seria ideal crearse un nuevo componente, pero este es simple */}
             {
-                (<h2>Cargando...</h2>) && isLoading
+                isLoading && <h2>Cargando...</h2> 
             }
 
             <div className="card-grid">

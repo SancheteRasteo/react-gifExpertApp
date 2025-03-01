@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { AddCategory, GifGrid } from "./components";
+import { formatizString } from "./helpers/formatizString";
 
 
 export const GifExpertApp = () => {
 
     const [categories, setCategories] = useState([ 'Sword Art Online', 'Re Zero' ]);
 
-    const formatizString = (s) => s.replace( /\s+/g, '' ).toLowerCase();  //Elimina los espacios y manda a lowercase
-
     const onAddCategory = (value) => {
 
-        if( categories.map(s => formatizString(s)).includes( formatizString(value) ) ) return;
+        if( categories.map(s => formatizString(s)).includes( formatizString(value) ) ) return true;
         
         setCategories([ value, ...categories ])
 
